@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import axios from "axios";
 
-const Exercise = (props) => (
+const Transaction = (props) => (
     <tr>
         <td>{props.exercise.username}</td>
         <td>{props.exercise.description}</td>
@@ -21,7 +21,7 @@ const Exercise = (props) => (
     </tr>
 );
 
-const ExercisesList = (props) => {
+const TransactionsList = () => {
     const location = useLocation();
     const [exercises, setExercises] = useState([]);
 
@@ -34,7 +34,7 @@ const ExercisesList = (props) => {
 
     const exerciseList = () =>
         exercises.map((cur) => (
-            <Exercise
+            <Transaction
                 key={cur._id}
                 exercise={cur}
                 deleteExercise={deleteExercise}
@@ -52,7 +52,7 @@ const ExercisesList = (props) => {
 
     return (
         <div>
-            <h3>Logged Exercises</h3>
+            <h3>Logged Transactions</h3>
             <table className="table">
                 <thead className="thead-light">
                     <tr>
@@ -69,4 +69,4 @@ const ExercisesList = (props) => {
     );
 };
 
-export default ExercisesList;
+export default TransactionsList;

@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from "react";
 import DatePicker from "react-datepicker";
+import { useHistory } from "react-router-dom";
 import axios from "axios";
 import "react-datepicker/dist/react-datepicker.css";
-import { useParams, useHistory } from "react-router-dom";
 
-const EditExercise = (props) => {
-    const routerParams = useParams();
+const CreateTransaction = (props) => {
     let history = useHistory();
-
     const [state, setState] = useState({
         username: "",
         description: "",
@@ -44,36 +42,19 @@ const EditExercise = (props) => {
         console.log(exercise);
 
         axios
-            .post(
-                "http://localhost:5000/exercises/update/" + routerParams.id,
-                exercise
-            )
+            .post("http://localhost:5000/exercises/add", exercise)
             .then((res) => console.log(res.data));
 
         history.push("/");
     };
 
     useEffect(() => {
-        axios
-            .get("http://localhost:5000/exercises/" + routerParams.id)
-            .then((res) => {
-                if (res.data.length > 0) {
-                    setState((prev) => ({
-                        ...prev,
-                        username: res.data.username,
-                        description: res.data.description,
-                        duration: res.data.duration,
-                        date: new Date(res.data.date),
-                    }));
-                }
-            })
-            .catch((err) => console.error(err));
-
         axios.get("http://localhost:5000/users/").then((res) => {
             if (res.data.length > 0) {
                 setState((prev) => ({
                     ...prev,
                     users: res.data.map((user) => user.username),
+                    username: res.data[0].username,
                 }));
             }
         });
@@ -81,7 +62,7 @@ const EditExercise = (props) => {
 
     return (
         <div>
-            <h3>Edit Exercise Log</h3>
+            <h3>Create New Transaction Log</h3>
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label>Username: </label>
@@ -136,7 +117,7 @@ const EditExercise = (props) => {
                 <div className="form-group">
                     <input
                         type="submit"
-                        value="Edit Exercise Log"
+                        value="Create Exercise Log"
                         className="btn btn-primary"
                     />
                 </div>
@@ -145,4 +126,4 @@ const EditExercise = (props) => {
     );
 };
 
-export default EditExercise;
+export default CreateTransaction;
