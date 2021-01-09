@@ -54,10 +54,19 @@ const EditTransaction = (props) => {
     };
 
     useEffect(() => {
+        axios.get("http://localhost:5000/users/").then((res) => {
+            if (res.data.length > 0) {
+                setState((prev) => ({
+                    ...prev,
+                    users: res.data.map((user) => user.username),
+                }));
+            }
+        });
+
         axios
             .get("http://localhost:5000/exercises/" + routerParams.id)
             .then((res) => {
-                if (res.data.length > 0) {
+                if (Object.keys(res.data).length > 0) {
                     setState((prev) => ({
                         ...prev,
                         username: res.data.username,
@@ -68,15 +77,6 @@ const EditTransaction = (props) => {
                 }
             })
             .catch((err) => console.error(err));
-
-        axios.get("http://localhost:5000/users/").then((res) => {
-            if (res.data.length > 0) {
-                setState((prev) => ({
-                    ...prev,
-                    users: res.data.map((user) => user.username),
-                }));
-            }
-        });
     }, []);
 
     return (
