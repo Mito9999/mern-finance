@@ -4,15 +4,16 @@ import axios from "axios";
 
 const Transaction = (props) => (
     <tr>
-        <td>{props.exercise.username}</td>
-        <td>{props.exercise.description}</td>
-        <td>{props.exercise.duration}</td>
-        <td>{props.exercise.date.substring(0, 10)}</td>
+        <td>{props.transaction.username}</td>
+        <td>{props.transaction.description}</td>
+        <td>{props.transaction.duration}</td>
+        <td>{props.transaction.date.substring(0, 10)}</td>
         <td>
-            <Link to={"/edit/" + props.exercise._id}>edit</Link> |{" "}
+            <Link to={"/edit/" + props.transaction._id}>edit</Link> |{" "}
             <span
+                style={{ color: "red", cursor: "pointer" }}
                 onClick={() => {
-                    props.deleteExercise(props.exercise._id);
+                    props.deleteTransaction(props.transaction._id);
                 }}
             >
                 (X)
@@ -23,29 +24,29 @@ const Transaction = (props) => (
 
 const TransactionsList = () => {
     const location = useLocation();
-    const [exercises, setExercises] = useState([]);
+    const [transactions, setTransactions] = useState([]);
 
-    const deleteExercise = (id) => {
+    const deleteTransaction = (id) => {
         axios
-            .delete("http://localhost:5000/exercises/" + id)
+            .delete("http://localhost:5000/transactions/" + id)
             .then((res) => console.log(res.data));
-        setExercises((prev) => prev.filter((el) => el._id !== id));
+        setTransactions((prev) => prev.filter((el) => el._id !== id));
     };
 
-    const exerciseList = () =>
-        exercises.map((cur) => (
+    const transactionList = () =>
+        transactions.map((cur) => (
             <Transaction
                 key={cur._id}
-                exercise={cur}
-                deleteExercise={deleteExercise}
+                transaction={cur}
+                deleteTransaction={deleteTransaction}
             />
         ));
 
     useEffect(() => {
         setTimeout(() => {
             axios
-                .get("http://localhost:5000/exercises")
-                .then((res) => setExercises(res.data))
+                .get("http://localhost:5000/transactions")
+                .then((res) => setTransactions(res.data))
                 .catch((err) => console.error(err));
         }, 50);
     }, [location]);
@@ -63,7 +64,7 @@ const TransactionsList = () => {
                         <th>Actions</th>
                     </tr>
                 </thead>
-                <tbody>{exerciseList()}</tbody>
+                <tbody>{transactionList()}</tbody>
             </table>
         </div>
     );

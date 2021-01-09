@@ -34,19 +34,19 @@ const EditTransaction = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        const exercise = {
+        const transaction = {
             username: state.username,
             description: state.description,
             duration: state.duration,
             date: state.date,
         };
 
-        console.log(exercise);
+        console.log(transaction);
 
         axios
             .post(
-                "http://localhost:5000/exercises/update/" + routerParams.id,
-                exercise
+                "http://localhost:5000/transactions/update/" + routerParams.id,
+                transaction
             )
             .then((res) => console.log(res.data));
 
@@ -64,7 +64,7 @@ const EditTransaction = (props) => {
         });
 
         axios
-            .get("http://localhost:5000/exercises/" + routerParams.id)
+            .get("http://localhost:5000/transactions/" + routerParams.id)
             .then((res) => {
                 if (Object.keys(res.data).length > 0) {
                     setState((prev) => ({
@@ -81,7 +81,7 @@ const EditTransaction = (props) => {
 
     return (
         <div>
-            <h3>Edit Exercise Log</h3>
+            <h3>Edit Transaction Log</h3>
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label>Username: </label>
@@ -136,7 +136,7 @@ const EditTransaction = (props) => {
                 <div className="form-group">
                     <input
                         type="submit"
-                        value="Edit Exercise Log"
+                        value="Edit Transaction Log"
                         className="btn btn-primary"
                     />
                 </div>

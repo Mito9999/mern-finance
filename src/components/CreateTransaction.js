@@ -32,17 +32,17 @@ const CreateTransaction = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        const exercise = {
+        const transaction = {
             username: state.username,
             description: state.description,
             duration: state.duration,
             date: state.date,
         };
 
-        console.log(exercise);
+        console.log(transaction);
 
         axios
-            .post("http://localhost:5000/exercises/add", exercise)
+            .post("http://localhost:5000/transactions/add", transaction)
             .then((res) => console.log(res.data));
 
         history.push("/");
@@ -117,7 +117,7 @@ const CreateTransaction = (props) => {
                 <div className="form-group">
                     <input
                         type="submit"
-                        value="Create Exercise Log"
+                        value="Create Transaction Log"
                         className="btn btn-primary"
                     />
                 </div>

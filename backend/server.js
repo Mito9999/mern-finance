@@ -24,7 +24,7 @@ connection.once("open", () => {
 const transactionsRouter = require("./routes/transactions");
 const usersRouter = require("./routes/users");
 
-app.use("/exercises", transactionsRouter);
+app.use("/transactions", transactionsRouter);
 app.use("/users", usersRouter);
 
 app.listen(PORT, () => {
