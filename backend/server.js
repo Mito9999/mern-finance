@@ -21,10 +21,10 @@ connection.once("open", () => {
     console.log("mongo");
 });
 
-const exercisesRouter = require("./routes/exercises");
+const transactionsRouter = require("./routes/transactions");
 const usersRouter = require("./routes/users");
 
-app.use("/exercises", exercisesRouter);
+app.use("/exercises", transactionsRouter);
 app.use("/users", usersRouter);
 
 app.listen(PORT, () => {
