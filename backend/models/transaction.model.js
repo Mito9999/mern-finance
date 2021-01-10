@@ -6,7 +6,7 @@ const transactionSchema = new Schema(
     {
         username: { type: String, required: true },
         description: { type: String, required: true },
-        duration: { type: Number, required: true },
+        amount: { type: Number, required: true },
         date: { type: Date, required: true },
     },
     {
@@ -14,6 +14,6 @@ const transactionSchema = new Schema(
     }
 );
 
-const Transaction = mongoose.model("Exercise", transactionSchema);
+const Transaction = mongoose.model("Transaction", transactionSchema);
 
 module.exports = Transaction;

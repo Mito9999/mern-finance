@@ -11,7 +11,7 @@ const EditTransaction = (props) => {
     const [state, setState] = useState({
         username: "",
         description: "",
-        duration: 0,
+        amount: 0,
         date: new Date(),
         users: [],
     });
@@ -37,7 +37,7 @@ const EditTransaction = (props) => {
         const transaction = {
             username: state.username,
             description: state.description,
-            duration: state.duration,
+            amount: state.amount,
             date: state.date,
         };
 
@@ -71,7 +71,7 @@ const EditTransaction = (props) => {
                         ...prev,
                         username: res.data.username,
                         description: res.data.description,
-                        duration: res.data.duration,
+                        amount: res.data.amount,
                         date: new Date(res.data.date),
                     }));
                 }
@@ -113,12 +113,12 @@ const EditTransaction = (props) => {
                     />
                 </div>
                 <div className="form-group">
-                    <label>Duration (in minutes): </label>
+                    <label>Amount: </label>
                     <input
-                        name="duration"
+                        name="amount"
                         type="number"
                         className="form-control"
-                        value={state.duration}
+                        value={state.amount}
                         onChange={handleChange}
                     />
                 </div>

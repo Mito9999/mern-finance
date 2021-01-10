@@ -9,7 +9,7 @@ const CreateTransaction = (props) => {
     const [state, setState] = useState({
         username: "",
         description: "",
-        duration: 0,
+        amount: 0,
         date: new Date(),
         users: [],
     });
@@ -35,7 +35,7 @@ const CreateTransaction = (props) => {
         const transaction = {
             username: state.username,
             description: state.description,
-            duration: state.duration,
+            amount: state.amount,
             date: state.date,
         };
 
@@ -94,12 +94,12 @@ const CreateTransaction = (props) => {
                     />
                 </div>
                 <div className="form-group">
-                    <label>Duration (in minutes): </label>
+                    <label>Amount: </label>
                     <input
-                        name="duration"
+                        name="amount"
                         type="number"
                         className="form-control"
-                        value={state.duration}
+                        value={state.amount}
                         onChange={handleChange}
                     />
                 </div>

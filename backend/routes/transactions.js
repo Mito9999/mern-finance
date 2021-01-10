@@ -10,13 +10,13 @@ router.route("/").get((req, res) => {
 router.route("/add").post((req, res) => {
     const username = req.body.username;
     const description = req.body.description;
-    const duration = Number(req.body.duration);
+    const amount = Number(req.body.amount);
     const date = Date.parse(req.body.date);
 
     const newTransactions = new Transaction({
         username,
         description,
-        duration,
+        amount,
         date,
     });
 
@@ -43,7 +43,7 @@ router.route("/update/:id").post((req, res) => {
         .then((transaction) => {
             transaction.username = req.body.username;
             transaction.description = req.body.description;
-            transaction.duration = Number(req.body.duration);
+            transaction.amount = Number(req.body.amount);
             transaction.date = Date.parse(req.body.date);
 
             transaction

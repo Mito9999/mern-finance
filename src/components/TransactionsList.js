@@ -6,7 +6,7 @@ const Transaction = (props) => (
     <tr>
         <td>{props.transaction.username}</td>
         <td>{props.transaction.description}</td>
-        <td>{props.transaction.duration}</td>
+        <td>{props.transaction.amount}</td>
         <td>{props.transaction.date.substring(0, 10)}</td>
         <td>
             <Link to={"/edit/" + props.transaction._id}>edit</Link> |{" "}
@@ -51,15 +51,35 @@ const TransactionsList = () => {
         }, 50);
     }, [location]);
 
+    const totalAmountOfTransactions = transactions.reduce(
+        (acc, cur) => acc + cur.amount,
+        0
+    );
+
     return (
         <div>
-            <h3>Logged Transactions</h3>
+            <h3
+                style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                }}
+            >
+                <span>Logged Transactions</span>
+                <span
+                    style={{
+                        color: totalAmountOfTransactions > 0 ? "green" : "red",
+                    }}
+                >
+                    ${totalAmountOfTransactions}
+                </span>
+            </h3>
             <table className="table">
                 <thead className="thead-light">
                     <tr>
                         <th>Username</th>
                         <th>Description</th>
-                        <th>Duration</th>
+                        <th>Amount</th>
                         <th>Date</th>
                         <th>Actions</th>
                     </tr>
