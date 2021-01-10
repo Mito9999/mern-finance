@@ -5,7 +5,6 @@ import Navbar from "./components/Navbar";
 import TransactionsList from "./components/TransactionsList";
 import EditTransaction from "./components/EditTransaction";
 import CreateTransaction from "./components/CreateTransaction";
-import CreateUser from "./components/CreateUser";
 
 import Account from "./components/Account";
 import Signup from "./components/Signup";
@@ -33,9 +32,6 @@ function App() {
                     </Route>
                     <Route path="/create">
                         <CreateTransaction />
-                    </Route>
-                    <Route path="/user">
-                        <CreateUser />
                     </Route>
                     <Container
                         className="d-flex align-items-center justify-content-center"

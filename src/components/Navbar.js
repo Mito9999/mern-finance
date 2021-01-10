@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { Button } from "react-bootstrap";
 
 const Navbar = () => (
     <nav className="navbar navbar-dark bg-dark navbar-expand-lg">
@@ -24,6 +25,12 @@ const Navbar = () => (
                     </Link>
                 </li>
             </ul>
+            <Link to="/login" className="nav-link">
+                <Button variant="outline-secondary">Log In</Button>
+            </Link>
+            <Link to="/signup" className="nav-link">
+                <Button variant="primary">Sign Up</Button>
+            </Link>
         </div>
     </nav>
 );
